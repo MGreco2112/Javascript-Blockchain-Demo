@@ -33,6 +33,23 @@ class Blockchain{
         newBlock.hash = newBlock.calculateHash();
         this.chain.push(newBlock);
     }
+
+    isChainValid() {
+        for (let i = 1; i < this.chain.length; i++) {
+            const currentBlock = this.chain[i];
+            const previousBlock = this.chain[i - 1];
+
+            if (currentBlock.hash !== currentBlock.calculateHash()) {
+                return false;
+            }
+
+            if (currentBlock.previousHash !== previousBlock.hash){
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
 
 let galtCoin = new Blockchain();
@@ -41,3 +58,12 @@ galtCoin.addBlock(new Block(2, "01/05/2112", {amount: 10}));
 galtCoin.addBlock(new Block(3, "01/09/2112", {amount: 50}));
 
 console.log(JSON.stringify(galtCoin, null, 4));
+
+console.log("Is blockchain valid? " + galtCoin.isChainValid());
+
+galtCoin.chain[1].data = {amount: 100};
+galtCoin.chain[1].hash = galtCoin.chain[1].calculateHash();
+
+console.log(JSON.stringify(galtCoin, null, 4));
+
+console.log("Is blockchain valid? " + galtCoin.isChainValid());
