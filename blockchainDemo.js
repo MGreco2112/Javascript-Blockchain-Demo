@@ -82,7 +82,7 @@ class Blockchain{
     }
 
     createGenesisBlock() {
-        return new Block("01/01/2112", "0");
+        return new Block(Date.parse("2021-01-01"), [], "0");
     }
 
     getLatestBlock() {
@@ -90,7 +90,10 @@ class Blockchain{
     }
 
     minePendingTransactions(miningRewardAddress) {
-        let block = new Block(Date.now(), this.pendingTransactions);
+        const rewardTx = new Transaction(null, miningRewardAddress, this.miningRewards);
+        this.pendingTransactions.push(rewardTx);
+
+        let block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash);
         block.mineBlock(this.difficulty);
 
         console.log("Block successfully mined");

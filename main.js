@@ -15,10 +15,6 @@ galtCoin.addTransaction(tx1);
 console.log('\n Starting a miner...');
 galtCoin.minePendingTransactions(myWalletAddress);
 
-console.log('\n Starting a miner...');
-galtCoin.minePendingTransactions(myWalletAddress);
-
-
 console.log("\nBalance of Galt is", galtCoin.getBalanceOfAddress(myWalletAddress));
 
 
