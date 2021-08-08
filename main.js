@@ -17,6 +17,7 @@ galtCoin.minePendingTransactions(myWalletAddress);
 
 console.log("\nBalance of Galt is", galtCoin.getBalanceOfAddress(myWalletAddress));
 
+// galtCoin.chain[1].transactions[0].amount = 1;
 
 console.log("Is chain valid?", galtCoin.isChainValid());
 // console.log(JSON.stringify(galtCoin, null, 4));
